@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Redirigiendo...</title>
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <script>
       // Detectar bots de Meta/Facebook/Instagram
       const bots = [
@@ -18,13 +20,22 @@
       const isBot = bots.some(bot => bot.test(userAgent));
 
       if (!isBot) {
-        // Número completo: 5492615040574
-        const encoded = "NTQ5MjYxNTA0MDU3NA=="; // Base64
+        // Número codificado: 5492612345891
+        const encoded = "NTQ5MjYxMjM0NTg5MQ==";
         const decoded = atob(encoded);
         const mensaje = encodeURIComponent("Hola, vengo por la publicidad");
-        window.location.href = `https://wa.me/${decoded}?text=${mensaje}`;
+        const url = `https://wa.me/${decoded}?text=${mensaje}`;
+        window.location.href = url;
       } else {
-        document.write("<h3>Gracias por visitar</h3>");
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.innerHTML = `
+            <h3>Gracias por visitar</h3>
+            <p>Si no fuiste redirigido automáticamente, tocá el botón:</p>
+            <a href="https://wa.me/5492612345891?text=Hola,%20vengo%20por%20la%20publicidad" style="font-size: 18px;">
+              Ir a WhatsApp
+            </a>
+          `;
+        });
       }
     </script>
   </head>
@@ -32,4 +43,3 @@
     <noscript>Activá JavaScript para continuar.</noscript>
   </body>
 </html>
-
